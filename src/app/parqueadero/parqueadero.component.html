@@ -1,0 +1,97 @@
+<div class="container">
+  <ngb-tabset>
+    <ngb-tab title="Ingreso de vehiculo">
+      <ng-template ngbTabContent>
+        <br>
+        <br>
+        <br>
+        <div>
+          <h1 class="text-center">Ingreso de vehiculos</h1>
+          <form>
+            <div class="form-group">
+              <label for="placa">Placa vehiculo:</label>
+              <input type="text" [(ngModel)]="ingresarVehiculo.placa"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" name="placa" class="form-control" id="placa">
+            </div>
+            <div class="form-group">
+              <label for="tipo">Tipo de Vehiculo:</label>
+              <select class="form-control" [(ngModel)]="ingresarVehiculo.tipoVehiculo" name="tipo" id="tipo" required>
+                <option (value)="NoSelect">Sel.Vehiculo</option>
+                <option (value)="carro">Carro</option>
+                <option (value)="moto">Moto</option>
+              </select>
+            </div>
+            <div *ngIf="(ingresarVehiculo.tipoVehiculo=='Moto')" class="form-group">
+              <label for="cilindraje">Cilindraje Vehiculo:</label>
+              <input type="text" [(ngModel)]="ingresarVehiculo.cilindraje" name="cilindraje" class="form-control" id="cilindraje">
+            </div>
+
+            <div class="form-group , text-center">
+              <button (click)="guardar()" class="btn btn-success"  style="margin: 3%">Ingresar Vehiculo</button>
+              <button class="btn btn-info" style="margin: 3%">Cancelar ingreso</button>
+            </div>
+          </form>
+        </div>
+
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Cosulta de vehiculos">
+      <ng-template ngbTabContent>
+        <br>
+        <br>
+        <br>
+        <div>
+          <h1 class="text-center">Consulta de vehiculos</h1>
+          <form>
+            <div class="form-group , text-center">
+              <button (click)="listar()" class="btn btn-info" style="margin: 3%">Listar Carros</button>
+              <button (click)="listar()" class="btn btn-info" style="margin: 3%">Listar Motos</button>
+              <button (click)="limpiar()" class="btn btn-info" style="margin: 3%">Limpiar Tabla</button>
+            </div>
+            <div class="form-group , text-center" *ngIf="mostrarTabla">
+                <table class="table table-hover">
+                      <tr>
+                        <th >Vehiculo</th>
+                        <th>Placa</th>
+                        <th >Fecha Ingreso</th>
+                      </tr>
+                      <tr *ngFor="let val of parqueadero">
+                          <th >{{val.tipoVehiculo}}</th>
+                          <th>{{val.placa}}</th>
+                          <th >{{val.fechaIngreso  | date:'dd/MM/yyyy hh:mm' }}</th>
+                      </tr>
+              </table>
+              </div>
+          </form>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Salida de vehiculo">
+      <ng-template ngbTabContent>
+          <br>
+          <br>
+          <br>
+          <div>
+              <h1 class="text-center">Salida de vehiculos</h1>
+              <form>
+                  <div class="form-group">
+                      <label for="placaSalida">Placa vehiculo:</label>
+                      <input  type="text" [(ngModel)]="consultaPlaca" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" name="placa" class="form-control" id="placaSalida">
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group, text-center" *ngIf="consultaSalida">
+                        <label for="placaVehiculoSale"> <b>Placa vehiculo: </b> {{parqueaderoConsultado.placa}}  </label><br>
+                        <label for="tipoVehiculoSale"><b>Tipo Vehiculo: </b> {{parqueaderoConsultado.tipoVehiculo}} </label><br>
+                        <label for="horaIngresoSale"><b>Hora Ingreso:</b> {{parqueaderoConsultado.fechaIngreso | date:'dd/MM/yyyy hh:mm' }} </label><br>
+                        <label for="horaIngresoSale"><b>Valor a Pagar:</b> {{parqueaderoConsultado.valorPago | currency}} </label><br>
+                      </div>
+                <div class="form-group , text-center">
+                  <button (click)="consultar()" class="btn btn-danger" style="margin: 3%">Buscar Vehiculo</button>
+                </div>
+              </form>
+            </div>
+
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>
