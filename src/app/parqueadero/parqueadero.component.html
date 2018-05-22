@@ -79,15 +79,32 @@
                     </div>
                     <br>
                     <br>
-                    <div class="form-group, text-center" *ngIf="consultaSalida">
-                        <label for="placaVehiculoSale"> <b>Placa vehiculo: </b> {{parqueaderoConsultado.placa}}  </label><br>
-                        <label for="tipoVehiculoSale"><b>Tipo Vehiculo: </b> {{parqueaderoConsultado.tipoVehiculo}} </label><br>
-                        <label for="horaIngresoSale"><b>Hora Ingreso:</b> {{parqueaderoConsultado.fechaIngreso | date:'dd/MM/yyyy hh:mm' }} </label><br>
-                        <label for="horaIngresoSale"><b>Valor a Pagar:</b> {{parqueaderoConsultado.valorPago | currency}} </label><br>
-                      </div>
+                 
                 <div class="form-group , text-center">
-                  <button (click)="consultar()" class="btn btn-danger" style="margin: 3%">Buscar Vehiculo</button>
+                  <!--<button (click)="consultar()" class="btn btn-danger" style="margin: 3%">Buscar Vehiculo</button>-->
+                  <button class="btn btn-outline-primary mb-2 mr-2" (click)="lanzarModal(content)">Buscar Vehiculo</button>
                 </div>
+
+                <ng-template #content let-c="close" let-d="dismiss">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Ticket de Pago</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="form-group, text-center">
+                          <h4 class="modal-title" *ngIf="mostrarMensajeListar">{{mensajeListar}}</h4>
+                        </div>
+                    <div class="form-group, text-center" *ngIf="consultaSalida">
+                      <label for="placaVehiculoSale"> <b>Placa vehiculo: </b> {{parqueaderoConsultado.placa}}  </label><br>
+                      <label for="tipoVehiculoSale"><b>Tipo Vehiculo: </b> {{parqueaderoConsultado.tipoVehiculo}} </label><br>
+                      <label for="horaIngresoSale"><b>Hora Ingreso:</b> {{parqueaderoConsultado.fechaIngreso | date:'dd/MM/yyyy hh:mm' }} </label><br>
+                      <label for="horaIngresoSale"><b>Hora Salida:</b> {{parqueaderoConsultado.fechaSalida | date:'dd/MM/yyyy hh:mm' }} </label><br>
+                      <label for="horaIngresoSale"><b>Valor a Pagar:</b> {{parqueaderoConsultado.valorPago | currency}} </label><br>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-outline-primary mb-2 mr-2" (click)="c('Close click')">Aceptar</button>
+                  </div>
+                </ng-template>
               </form>
             </div>
 
