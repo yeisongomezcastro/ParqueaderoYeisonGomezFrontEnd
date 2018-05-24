@@ -22,12 +22,12 @@
             </div>
             <div *ngIf="(ingresarVehiculo.tipoVehiculo=='Moto')" class="form-group">
               <label for="cilindraje">Cilindraje Vehiculo:</label>
-              <input type="text" [(ngModel)]="ingresarVehiculo.cilindraje" name="cilindraje" class="form-control" id="cilindraje">
+              <input type="number" [(ngModel)]="ingresarVehiculo.cilindraje" name="cilindraje" class="form-control" id="cilindraje">
             </div>
 
             <div class="form-group , text-center">
               <button (click)="guardar()" class="btn btn-success"  style="margin: 3%">Ingresar Vehiculo</button>
-              <button class="btn btn-info" style="margin: 3%">Cancelar ingreso</button>
+              <button (click)="cancelarIngreso()" class="btn btn-info" style="margin: 3%">Cancelar ingreso</button>
             </div>
           </form>
         </div>
@@ -43,9 +43,8 @@
           <h1 class="text-center">Consulta de vehiculos</h1>
           <form>
             <div class="form-group , text-center">
-              <button (click)="listar()" class="btn btn-info" style="margin: 3%">Listar Carros</button>
-              <button (click)="listar()" class="btn btn-info" style="margin: 3%">Listar Motos</button>
-              <button (click)="limpiar()" class="btn btn-info" style="margin: 3%">Limpiar Tabla</button>
+              <button (click)="listar()" class="btn btn-outline-primary mb-2 mr-2" style="margin: 3%">Listar Vehiculos</button>
+              <button (click)="limpiar()" class="btn btn-outline-primary mb-2 mr-2" style="margin: 3%">Limpiar Tabla</button>
             </div>
             <div class="form-group , text-center" *ngIf="mostrarTabla">
                 <table class="table table-hover">

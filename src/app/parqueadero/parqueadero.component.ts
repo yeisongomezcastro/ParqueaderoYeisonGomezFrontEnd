@@ -82,6 +82,12 @@ export class ParqueaderoComponent implements OnInit {
   )
   }
 
+  cancelarIngreso(){
+    this.ingresarVehiculo.cilindraje=null;
+    this.ingresarVehiculo.placa="";
+    this.ingresarVehiculo.tipoVehiculo="NoSelect";
+  }
+
   limpiar(){
     this.parqueadero = null;
     this.mostrarTabla=false;
@@ -106,18 +112,18 @@ export class ParqueaderoComponent implements OnInit {
   }
 
   guardar(){
-    this.service.guardar(this.ingresarVehiculo).then(data=>{
-      if(data){
-        this.ingresarVehiculo.placa="";
-        this.ingresarVehiculo.tipoVehiculo="NoSelect";
-        this.ingresarVehiculo.cilindraje=null;
-        alert("El vehiculo se guardo correctamente");
-      }
-    
-    },error =>{
-      console.log(error.error.message);
-        alert(error.error);
-    } )
+      this.service.guardar(this.ingresarVehiculo).then(data=>{
+        if(data){
+          this.ingresarVehiculo.placa="";
+          this.ingresarVehiculo.tipoVehiculo="NoSelect";
+          this.ingresarVehiculo.cilindraje=null;
+          alert("El vehiculo se guardo correctamente");
+        }
+      
+      },error =>{
+        console.log(error.error.message);
+          alert(error.error);
+      } )
   }
 
 }
